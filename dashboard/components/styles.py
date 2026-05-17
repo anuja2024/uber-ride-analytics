@@ -11,7 +11,7 @@ html, body, [class*="css"] {
 .stApp { background-color: #0a0a0f; }
 #MainMenu { visibility: hidden; }
 footer { visibility: hidden; }
-header { visibility: hidden; }
+
 
 [data-testid="collapsedControl"] {
     display: block !important;
