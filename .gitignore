@@ -1,0 +1,9 @@
+venv/
+.env
+__pycache__/
+*.pyc
+*.pyd
+data/uber_data.csv
+*.zip
+.streamlit/
+test.py
