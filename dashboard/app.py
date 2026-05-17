@@ -10,7 +10,6 @@ import sys
 import os
 import plotly.express as px
 import plotly.graph_objects as go
-from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DASH = os.path.dirname(os.path.abspath(__file__))
@@ -27,24 +26,6 @@ from analytics.queries import (
 )
 
 st.markdown(load_css(), unsafe_allow_html=True)
-
-# Force sidebar open
-st.markdown("""
-<style>
-[data-testid="collapsedControl"] {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    color: white !important;
-    background-color: #1a1a2e !important;
-}
-section[data-testid="stSidebar"] {
-    display: flex !important;
-    visibility: visible !important;
-    min-width: 250px !important;
-}
-</style>
-""", unsafe_allow_html=True)
 
 @st.cache_data(ttl=60)
 def load_data():
@@ -67,89 +48,30 @@ page = render_sidebar().strip()
 if page == "Home":
     st.markdown("<br>", unsafe_allow_html=True)
 
-    col1, col2 = st.columns([3, 2])
+    st.markdown("""
+    <div style="font-size:5rem; font-weight:800; color:white;
+                letter-spacing:-3px; line-height:1; margin-bottom:12px;
+                font-family:'Inter',sans-serif;">Uber.</div>
+    <div style="font-size:1.3rem; color:#6b7399; margin-bottom:24px;">
+        Real-Time Ride Analytics · India · 2024
+    </div>
+    <div style="font-size:1rem; color:#a0aec0; line-height:1.8;
+                margin-bottom:32px; max-width:600px;">
+        End-to-end analytics platform built on
+        <span style="color:#00d4aa; font-weight:600;">150,000 real rides</span>.
+        Powered by PostgreSQL, Python and Streamlit.
+    </div>
+    """, unsafe_allow_html=True)
 
-    with col1:
-        st.markdown("""
-        <div style="font-size:5rem; font-weight:800; color:white;
-                    letter-spacing:-3px; line-height:1; margin-bottom:12px;
-                    font-family:'Inter',sans-serif;">Uber.</div>
-        <div style="font-size:1.3rem; color:#6b7399; margin-bottom:24px;">
-            Real-Time Ride Analytics · India · 2024
-        </div>
-        <div style="font-size:1rem; color:#a0aec0; line-height:1.8;
-                    margin-bottom:32px; max-width:500px;">
-            End-to-end analytics platform built on
-            <span style="color:#00d4aa; font-weight:600;">150,000 real rides</span>.
-            Powered by PostgreSQL, Python and Streamlit.
-        </div>
-        """, unsafe_allow_html=True)
-
-        c1, c2, c3, c4 = st.columns(4)
-        c1.metric("Completed Rides", "93,000")
-        c2.metric("Total Revenue",   "₹47M")
-        c3.metric("Avg Rating",      "4.40")
-        c4.metric("Success Rate",    "62%")
-
-    with col2:
-        st.markdown("""
-        <div style="background:#12131f; border:1px solid #1e2040;
-                    border-radius:16px; padding:2rem; margin-top:0.5rem;">
-            <div style="color:#00d4aa; font-size:11px; font-weight:600;
-                        letter-spacing:0.15em; text-transform:uppercase;
-                        margin-bottom:1rem;">What this project demonstrates</div>
-            <div style="color:#a0aec0; font-size:14px; line-height:2.4;">
-                Real-time data pipelines<br>
-                SQL analytics with PostgreSQL<br>
-                Python ETL pipeline<br>
-                Interactive dashboard engineering<br>
-                Multi-page application architecture
-            </div>
-            <div style="margin-top:1.5rem; color:#00d4aa; font-size:11px;
-                        font-weight:600; letter-spacing:0.15em;
-                        text-transform:uppercase; margin-bottom:0.8rem;">
-                Tech stack
-            </div>
-            <div style="color:#a0aec0; font-size:14px; line-height:2.4;">
-                Python · PostgreSQL · Streamlit · Plotly · Pandas
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
+    c1, c2, c3, c4 = st.columns(4)
+    c1.metric("Completed Rides", "93,000")
+    c2.metric("Total Revenue",   "₹47M")
+    c3.metric("Avg Rating",      "4.40")
+    c4.metric("Success Rate",    "62%")
 
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("---")
-
-    # Navigation buttons on home page
-    st.markdown("### Navigate to dashboard pages")
-    st.markdown("<br>", unsafe_allow_html=True)
-
-    n1, n2, n3, n4, n5 = st.columns(5)
-    with n1:
-        if st.button("📊 Overview", use_container_width=True):
-            st.session_state["nav"] = "Overview"
-            st.rerun()
-    with n2:
-        if st.button("🚗 Vehicle Type", use_container_width=True):
-            st.session_state["nav"] = "Vehicle Type"
-            st.rerun()
-    with n3:
-        if st.button("💰 Revenue", use_container_width=True):
-            st.session_state["nav"] = "Revenue"
-            st.rerun()
-    with n4:
-        if st.button("❌ Cancellation", use_container_width=True):
-            st.session_state["nav"] = "Cancellation"
-            st.rerun()
-    with n5:
-        if st.button("⭐ Ratings", use_container_width=True):
-            st.session_state["nav"] = "Ratings"
-            st.rerun()
-
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("---")
-    st.markdown("### Explore the data")
-    st.markdown("<br>", unsafe_allow_html=True)
-
+    
     tab1, tab2, tab3 = st.tabs(["Overview", "Vehicle Performance", "Quick Stats"])
 
     with tab1:
