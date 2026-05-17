@@ -6,7 +6,7 @@ A production-style real-time analytics platform built on 150,000 real Uber rides
 
 ## Live Demo
 
-🚀 [View Live Dashboard](https://uber-ride-analytics-yourname.streamlit.app)
+🚀 [View Live Dashboard](https://uber-ride-analytics-2024.streamlit.app/)
 
 ---
 
