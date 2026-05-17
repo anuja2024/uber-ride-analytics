@@ -1,15 +1,4 @@
-import sys
-import os
-
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DASH = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, ROOT)
-sys.path.insert(0, DASH)
-
-# Import streamlit FIRST before anything else
 import streamlit as st
-
-# set_page_config MUST be the very first streamlit command
 st.set_page_config(
     page_title="Uber Analytics",
     page_icon="🚗",
@@ -17,10 +6,16 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# Now import everything else
+import sys
+import os
 import plotly.express as px
 import plotly.graph_objects as go
 from PIL import Image
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DASH = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, ROOT)
+sys.path.insert(0, DASH)
 
 from components.sidebar import render_sidebar
 from components.styles import load_css
