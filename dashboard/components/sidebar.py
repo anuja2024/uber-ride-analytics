@@ -24,7 +24,7 @@ def render_sidebar():
 
         st.markdown("""
         <div style="padding:0.5rem 1rem 1rem;">
-            <div style="color:#00d4aa; font-size:11px;
+            <div style="color:#00d4aa; font-size:30px;
                         letter-spacing:0.2em; font-weight:500;
                         text-transform:uppercase; margin-bottom:1rem;">
                 Analytics Platform
@@ -54,21 +54,21 @@ def render_sidebar():
         if "nav" in st.session_state:
             del st.session_state["nav"]
 
-        st.markdown("""
-        <div style="padding:1.2rem; margin-top:2rem;
-                    border-top:1px solid #1a1a2e;">
-            <div style="color:#6b7399; font-size:10px;
-                        letter-spacing:0.15em; text-transform:uppercase;
-                        margin-bottom:0.8rem; font-weight:600;">Dataset</div>
-            <div style="color:#8891a8; font-size:13px; line-height:2.2;">
-                150,000 rides<br>
-                Full Year 2024<br>
-                India<br>
-                6 vehicle types<br>
-                5 payment methods<br>
-                PostgreSQL
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
+        # st.markdown("""
+        # <div style="padding:1.2rem; margin-top:2rem;
+        #             border-top:1px solid #1a1a2e;">
+        #     <div style="color:#6b7399; font-size:10px;
+        #                 letter-spacing:0.15em; text-transform:uppercase;
+        #                 margin-bottom:0.8rem; font-weight:600;">Dataset</div>
+        #     <div style="color:#8891a8; font-size:13px; line-height:2.2;">
+        #         150,000 rides<br>
+        #         Full Year 2024<br>
+        #         India<br>
+        #         6 vehicle types<br>
+        #         5 payment methods<br>
+        #         PostgreSQL
+        #     </div>
+        # </div>
+        # """, unsafe_allow_html=True)
 
     return page
