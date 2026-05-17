@@ -28,6 +28,24 @@ from analytics.queries import (
 
 st.markdown(load_css(), unsafe_allow_html=True)
 
+# Force sidebar open
+st.markdown("""
+<style>
+[data-testid="collapsedControl"] {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: white !important;
+    background-color: #1a1a2e !important;
+}
+section[data-testid="stSidebar"] {
+    display: flex !important;
+    visibility: visible !important;
+    min-width: 250px !important;
+}
+</style>
+""", unsafe_allow_html=True)
+
 @st.cache_data(ttl=60)
 def load_data():
     return {
@@ -97,6 +115,35 @@ if page == "Home":
             </div>
         </div>
         """, unsafe_allow_html=True)
+
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("---")
+
+    # Navigation buttons on home page
+    st.markdown("### Navigate to dashboard pages")
+    st.markdown("<br>", unsafe_allow_html=True)
+
+    n1, n2, n3, n4, n5 = st.columns(5)
+    with n1:
+        if st.button("📊 Overview", use_container_width=True):
+            st.session_state["nav"] = "Overview"
+            st.rerun()
+    with n2:
+        if st.button("🚗 Vehicle Type", use_container_width=True):
+            st.session_state["nav"] = "Vehicle Type"
+            st.rerun()
+    with n3:
+        if st.button("💰 Revenue", use_container_width=True):
+            st.session_state["nav"] = "Revenue"
+            st.rerun()
+    with n4:
+        if st.button("❌ Cancellation", use_container_width=True):
+            st.session_state["nav"] = "Cancellation"
+            st.rerun()
+    with n5:
+        if st.button("⭐ Ratings", use_container_width=True):
+            st.session_state["nav"] = "Ratings"
+            st.rerun()
 
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("---")
