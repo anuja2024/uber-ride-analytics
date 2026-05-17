@@ -4,6 +4,7 @@ import os
 
 
 def render_sidebar():
+    st.set_page_config = None
     with st.sidebar:
         logo_path = os.path.join(
             os.path.dirname(os.path.dirname(__file__)),
@@ -13,7 +14,7 @@ def render_sidebar():
             logo = Image.open(logo_path)
             if st.image(logo, width=80):
                 st.session_state["page"] = "Home"
-
+ 
         st.markdown("""
         <div style="padding:0.5rem 1rem 1rem;">
             <div style="color:#00d4aa; font-size:30px;

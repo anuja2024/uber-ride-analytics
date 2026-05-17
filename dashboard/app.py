@@ -23,6 +23,7 @@ st.set_page_config(
     page_title="Uber Analytics",
     page_icon="",
     layout="wide",
+    initial_sidebar_state="expanded",
 )
 from streamlit_autorefresh import st_autorefresh
 
