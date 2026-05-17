@@ -4,6 +4,15 @@ import os
 
 
 def render_sidebar():
+    # Check if navigation was triggered from home page buttons
+    if "nav" in st.session_state:
+        nav_value = st.session_state["nav"]
+    else:
+        nav_value = "Home"
+
+    pages = ["Home", "Overview", "Vehicle Type",
+             "Revenue", "Cancellation", "Ratings"]
+
     with st.sidebar:
         logo_path = os.path.join(
             os.path.dirname(os.path.dirname(__file__)),
@@ -17,23 +26,33 @@ def render_sidebar():
         <div style="padding:0.5rem 1rem 1rem;">
             <div style="color:#00d4aa; font-size:11px;
                         letter-spacing:0.2em; font-weight:500;
-                        text-transform:uppercase; margin-bottom:2rem;">
+                        text-transform:uppercase; margin-bottom:1rem;">
                 Analytics Platform
             </div>
             <div style="color:#6b7399; font-size:10px;
                         letter-spacing:0.2em; text-transform:uppercase;
-                        margin-bottom:0.8rem; font-weight:600;">
+                        margin-bottom:0.5rem; font-weight:600;">
                 Navigation
             </div>
         </div>
         """, unsafe_allow_html=True)
 
+        # Get index of current page
+        if nav_value in pages:
+            idx = pages.index(nav_value)
+        else:
+            idx = 0
+
         page = st.radio(
             "nav",
-            ["Home", "Overview", "Vehicle Type",
-             "Revenue", "Cancellation", "Ratings"],
+            pages,
+            index=idx,
             label_visibility="collapsed",
         )
+
+        # Clear session state nav after use
+        if "nav" in st.session_state:
+            del st.session_state["nav"]
 
         st.markdown("""
         <div style="padding:1.2rem; margin-top:2rem;
