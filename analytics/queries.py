@@ -6,12 +6,12 @@ import os
 load_dotenv()
 
 def get_engine():
-    host = os.getenv("DB_HOST", "localhost")
-    port = int(os.getenv("DB_PORT", 5432))
+    host     = os.getenv("DB_HOST", "localhost")
+    port     = int(os.getenv("DB_PORT", 5432))
     database = os.getenv("DB_NAME", "rideshare")
-    user = os.getenv("DB_USER", "postgres")
+    user     = os.getenv("DB_USER", "postgres")
     password = os.getenv("DB_PASSWORD", "postgres")
-    url = f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{database}"
+    url = f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{database}?sslmode=require"
     return create_engine(url)
 
 def get_kpis():
