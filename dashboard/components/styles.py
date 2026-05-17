@@ -9,15 +9,27 @@ html, body, [class*="css"] {
     color: #e0e4f0;
 }
 .stApp { background-color: #0a0a0f; }
-#MainMenu, footer, header { visibility: hidden; }
-.block-container {
-    padding: 2rem 2rem 2rem 2rem;
-    max-width: 1400px;
+#MainMenu { visibility: hidden; }
+footer { visibility: hidden; }
+header { visibility: hidden; }
+
+[data-testid="collapsedControl"] {
+    display: block !important;
+    visibility: visible !important;
+    color: white !important;
+    background: #1a1a2e !important;
 }
+
 [data-testid="stSidebar"] {
     background: #0d0d14 !important;
     border-right: 1px solid #1a1a2e;
 }
+
+.block-container {
+    padding: 2rem 2rem 2rem 2rem;
+    max-width: 1400px;
+}
+
 .kpi-card {
     background: linear-gradient(135deg, #12131f, #0e0f1a);
     border: 1px solid #1e2040;
