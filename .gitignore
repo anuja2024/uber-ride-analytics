@@ -7,3 +7,4 @@ data/uber_data.csv
 *.zip
 .streamlit/
 test.py
+.streamlit/secrets.toml
