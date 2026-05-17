@@ -24,7 +24,7 @@ def render_sidebar():
 
         st.markdown("""
         <div style="padding:0.5rem 1rem 1rem;">
-            <div style="color:#00d4aa; font-size:30px;
+            <div style="color:#00d4aa; font-size:50px;
                         letter-spacing:0.2em; font-weight:500;
                         text-transform:uppercase; margin-bottom:1rem;">
                 Analytics Platform
