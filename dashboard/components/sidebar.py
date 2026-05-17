@@ -29,7 +29,7 @@ def render_sidebar():
                         text-transform:uppercase; margin-bottom:1rem;">
                 Analytics Platform
             </div>
-            <div style="color:#6b7399; font-size:30px;
+            <div style="color:#6b7399; font-size:50px;
                         letter-spacing:0.2em; text-transform:uppercase;
                         margin-bottom:0.5rem; font-weight:600;">
                 Navigation
