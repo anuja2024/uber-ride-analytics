@@ -10,6 +10,14 @@ DASH = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, ROOT)
 sys.path.insert(0, DASH)
 
+# Must be first Streamlit command
+st.set_page_config(
+    page_title="Uber Analytics",
+    page_icon="🚗",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
+
 from components.sidebar import render_sidebar
 from components.styles import load_css
 from analytics.queries import (
@@ -19,20 +27,9 @@ from analytics.queries import (
     get_top_routes, get_monthly_stats,
 )
 
-st.set_page_config(
-    page_title="Uber Analytics",
-    page_icon="",
-    layout="wide",
-    initial_sidebar_state="expanded",
-)
-from streamlit_autorefresh import st_autorefresh
-
-# Auto refresh every 10 seconds
-st_autorefresh(interval=10000, key="autorefresh")
-
 st.markdown(load_css(), unsafe_allow_html=True)
 
-@st.cache_data(ttl=10)
+@st.cache_data(ttl=60)
 def load_data():
     return {
         "kpis":    get_kpis(),
@@ -53,19 +50,13 @@ page = render_sidebar().strip()
 if page == "Home":
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # # Logo on home page
-    # logo_path = os.path.join(DASH, "assets", "uver_logo.jpg")
-    # if os.path.exists(logo_path):
-    #     logo = Image.open(logo_path)
-    #     st.image(logo, width=120)
-
     col1, col2 = st.columns([3, 2])
 
     with col1:
         st.markdown("""
         <div style="font-size:5rem; font-weight:800; color:white;
                     letter-spacing:-3px; line-height:1; margin-bottom:12px;
-                    font-family:'Inter',sans-serif;">Uber</div>
+                    font-family:'Inter',sans-serif;">Uber.</div>
         <div style="font-size:1.3rem; color:#6b7399; margin-bottom:24px;">
             Real-Time Ride Analytics · India · 2024
         </div>
@@ -83,34 +74,33 @@ if page == "Home":
         c3.metric("Avg Rating",      "4.40")
         c4.metric("Success Rate",    "62%")
 
-    # with col2:
-    #     st.markdown("""
-    #     <div style="background:#12131f; border:1px solid #1e2040;
-    #                 border-radius:16px; padding:2rem; margin-top:0.5rem;">
-    #         <div style="color:#00d4aa; font-size:11px; font-weight:600;
-    #                     letter-spacing:0.15em; text-transform:uppercase;
-    #                     margin-bottom:1rem;">What this project demonstrates</div>
-    #         <div style="color:#a0aec0; font-size:14px; line-height:2.4;">
-    #             Real-time data pipelines<br>
-    #             SQL analytics with PostgreSQL<br>
-    #             Python ETL pipeline<br>
-    #             Interactive dashboard engineering<br>
-    #             Multi-page application architecture
-    #         </div>
-    #         <div style="margin-top:1.5rem; color:#00d4aa; font-size:11px;
-    #                     font-weight:600; letter-spacing:0.15em;
-    #                     text-transform:uppercase; margin-bottom:0.8rem;">
-    #             Tech stack
-    #         </div>
-    #         <div style="color:#a0aec0; font-size:14px; line-height:2.4;">
-    #             Python · PostgreSQL · Streamlit · Plotly · Pandas
-    #         </div>
-    #     </div>
-    #     """, unsafe_allow_html=True)
+    with col2:
+        st.markdown("""
+        <div style="background:#12131f; border:1px solid #1e2040;
+                    border-radius:16px; padding:2rem; margin-top:0.5rem;">
+            <div style="color:#00d4aa; font-size:11px; font-weight:600;
+                        letter-spacing:0.15em; text-transform:uppercase;
+                        margin-bottom:1rem;">What this project demonstrates</div>
+            <div style="color:#a0aec0; font-size:14px; line-height:2.4;">
+                Real-time data pipelines<br>
+                SQL analytics with PostgreSQL<br>
+                Python ETL pipeline<br>
+                Interactive dashboard engineering<br>
+                Multi-page application architecture
+            </div>
+            <div style="margin-top:1.5rem; color:#00d4aa; font-size:11px;
+                        font-weight:600; letter-spacing:0.15em;
+                        text-transform:uppercase; margin-bottom:0.8rem;">
+                Tech stack
+            </div>
+            <div style="color:#a0aec0; font-size:14px; line-height:2.4;">
+                Python · PostgreSQL · Streamlit · Plotly · Pandas
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
 
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("---")
-
     st.markdown("### Explore the data")
     st.markdown("<br>", unsafe_allow_html=True)
 
